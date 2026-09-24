@@ -5,17 +5,17 @@ from pathlib import Path
 AUDIO_FORMAT = [".wav", ".mp3", ".flac"]  # Add more formats as needed
 
 
-''' Function: receive_input
-- Purpose: loads a specified audio file or all audio files in the folder and returns the audio data and sample rate.
+''' Function: import_audio
+- Purpose: loads a specified audio file or all audio files in the folder and returns the raw audio data (nChannels, nSamples) and sample rate.
 - Inputs: path of the folder, optional file name (if not provided, loads all audio files in the folder) 
 - Outputs: audio data and sample rate for a single file, or a dictionary of audio data and sample rates for all files in the folder.
 '''
-def receive_input(folder_path, file_name=None): 
+def import_audio(folder_path, file_name=None): 
 
     # Load a specified audio file  
     if file_name is not None: 
         file_path = os.path.join(folder_path, file_name)   # Use the default sample audio file
-        audio, sample_rate = librosa.load(file_path, mono=False, sr=None)
+        audio, sample_rate = librosa.load(file_path, mono=False, sr=16000)
 
         return audio, sample_rate
 
@@ -38,10 +38,10 @@ def receive_input(folder_path, file_name=None):
 
 
 ### Diagnostic
-# cat_audio, cat_sample_rate = receive_input("data", "cat_1.wav")  # Use the default sample audio file
-# print(f'Cat audio: shape = {cat_audio.shape}, sample rate = {cat_sample_rate}, duration = {cat_audio.shape[1] / cat_sample_rate:.2f} seconds, n_Channels = {cat_audio.shape[0]}')  # Print the audio data and sample rate for the loaded audio files
+cat_audio, cat_sample_rate = import_audio("data", "cat_1.wav")  # Use the default sample audio file
+print(f'Cat audio: shape = {cat_audio.shape}, sample rate = {cat_sample_rate}, duration = {cat_audio.shape[1] / cat_sample_rate:.2f} seconds, n_Channels = {cat_audio.shape[0]}')  # Print the audio data and sample rate for the loaded audio files
 
-# audio_files = receive_input("data")  # Load all audio files in the folder
+# audio_files = import_audio("data")  # Load all audio files in the folder
 # print(f'Keys in the dictionary: {list(audio_files.keys())}')  # Print the audio data and sample rate for the loaded audio files
 # print(f'Audio data and sample rate for cat_1.wav: {audio_files["cat_1.wav"]}')  # Print the audio data and sample rate for the loaded audio files
 # print(f'Audio data and sample rate for penguin_1.wav: {audio_files["penguin_1.wav"]}')  # Print the audio data and sample rate for the loaded audio files
