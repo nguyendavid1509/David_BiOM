@@ -1,5 +1,4 @@
 from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
 import joblib
 
 def train_model(X_train, y_train): 
@@ -7,4 +6,6 @@ def train_model(X_train, y_train):
     model = LinearRegression()
     model.fit(X_train, y_train)     # produces the linear equation for the data 
     joblib.dump(model, 'linear_regression.pkl')  # Save the trained model to a file
+    
+    return model 
 
