@@ -44,11 +44,12 @@ def main(train, test, predict):
 
     if predict == True: 
         # Step 4: load the saved model and make predictions  
-        y_pred = inference_single([3, 5, 2, 6, 4])
-        print(f"Predicted salary for 7 years of experience: ${y_pred}")
-        print(type(y_pred))
+        x_pred = np.array([3, 5, 2, 6, 4])  # Example input for prediction
+        y_pred = inference_single(x_pred.reshape(-1, 1))  # Make predictions using the trained model
+        for i, years in enumerate(x_pred):
+            print(f"Predicted salary for {years} years of experience: ${y_pred[i]:.2f}")
 
 
 
 if __name__ == "__main__":
-    main(train=False, test=False, predict=True)
+    main(train=True, test=True, predict=True)
