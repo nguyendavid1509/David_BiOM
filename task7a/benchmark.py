@@ -47,8 +47,7 @@ inference_time = time.perf_counter() - start
 
 cpu = process.cpu_percent(interval=None)
 
-print(f"Total inference time: {inference_time:.4f} ms")
+print(f"Total inference time: {inference_time:.4f} s")
 print(f"Average inference time: {inference_time / N_TESTS * 1000:.4f} ms")
 print(f"CPU usage: {cpu:.1f}%")
-print(f"Peak RAM usage: {}")
-
+print(f"Peak RAM usage: {ram_after_load / 1024**2:.2f} MB")
