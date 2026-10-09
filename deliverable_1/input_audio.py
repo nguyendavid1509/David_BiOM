@@ -3,13 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import librosa 
 from pathlib import Path
-
-
-AUDIO_FORMAT = [".wav", ".mp3", ".flac"]  # Add more formats as needed
-SAMPLE_RATE = 48000     
-
-FOLDER_PATH = "data" 
-
+from settings import SAMPLE_FREQUENCY, AUDIO_FORMAT, FOLDER_PATH
 
 
 ''' Function: import audio
@@ -25,7 +19,7 @@ def import_audio(folder_path, file_name=None):
     # Load a specified audio file  
     if file_name is not None: 
         file_path = os.path.join(folder_path, file_name)   # Use the default sample audio file
-        audio, sample_rate = librosa.load(file_path, mono=True, sr=SAMPLE_RATE)
+        audio, sample_rate = librosa.load(file_path, mono=True, sr=SAMPLE_FREQUENCY)
 
         # Create a new entry in the dictionary to store the (audio data, sample_rate)
         audio_files[file_name] = (audio, sample_rate)
@@ -41,7 +35,7 @@ def import_audio(folder_path, file_name=None):
 
                 # Load the audio file: store the audio data and sample rate in the dictionary 
                 file_path = os.path.join(folder_path, file) 
-                audio, sample_rate = librosa.load(file_path, mono=True, sr=SAMPLE_RATE)
+                audio, sample_rate = librosa.load(file_path, mono=True, sr=SAMPLE_FREQUENCY)
 
                 # Create a new entry in the dictionary for (audio data, sample rate) where the key is the file name 
                 audio_files[file] = (audio, sample_rate)    
@@ -83,6 +77,6 @@ def visualise_audio(audio_data):
         plt.show()
 
 
-### Diagnostic
-audio_data = import_audio("data")
-visualise_audio(audio_data)
+# ### Diagnostic
+# audio_data = import_audio(FOLDER_PATH)
+# visualise_audio(audio_data)

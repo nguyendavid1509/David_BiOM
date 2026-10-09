@@ -2,9 +2,8 @@ import wave
 import numpy as np
 import matplotlib.pyplot as plt
 
+from settings import SAMPLE_FREQUENCY, PACKET_SIZE
 
-SAMPLE_FREQUENCY = 48000
-PACKET_SIZE = 960 # in bytes: 10ms of 16-bit audio sampled at 48 kHz = 960 bytes per data transfer 
 
 ''' Function: placeholder for the incoming audio packets
 Purpose: combines the clarinet.wav and whistle.wav audio files and construct the byte packets 
@@ -27,11 +26,11 @@ def simulate_audio_packets(plot=False):
     print(f'Combined audio length: {len(combined_audio)} ({len(audio_1)} + {len(audio_2)})')
 
     # plotting functionalities 
-    if (plot ==True): 
+    if (plot == True): 
         combined_array = np.frombuffer(combined_audio, dtype=np.int16)
         time = np.arange(len(combined_array)) / SAMPLE_FREQUENCY
 
-        plt.figure
+        plt.figure()
         plt.xlabel("Time (s)")
         plt.ylabel("Amplitude")
         plt.title("Combined audio")
