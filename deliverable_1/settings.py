@@ -3,7 +3,7 @@ Purpose: contains the configuration parameters for the audio input module and th
         current values are based on the AudioMoth specifications and the model input requirements.
 '''
 
-# audio configuration parameters
+# audio file configuration parameters (for simulation) 
 FOLDER_PATH = "data" 
 AUDIO_FORMAT = [".wav", ".mp3", ".flac"]  # Add more formats as needed
 

@@ -24,6 +24,7 @@ def simulate_audio_packets(plot=False):
     # Combine the audio files 
     combined_audio = audio_1 + audio_2 + audio_1 + audio_2 
     print(f'Combined audio length: {len(combined_audio)} ({len(audio_1)} + {len(audio_2)})')
+    print(f'Duration: {(len(combined_audio)/2) / SAMPLE_FREQUENCY } seconds')                       # 2 bytes per sample -> divide by 2 for samples
 
     # plotting functionalities 
     if (plot == True): 
